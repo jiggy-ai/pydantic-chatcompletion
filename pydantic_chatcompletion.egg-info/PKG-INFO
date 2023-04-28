@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: pydantic-chatcompletion
+Version: 0.0.1
+Summary: Wrapper around OpenAI ChatCompletion that compels the language model to produce a valid Pydantic model as output via prompting and iterative error remediation.  The easiest way to go from unstructured text to structured Pydantic data.
+Author-email: Bill Kish <bk@jiggy.ai>
+Project-URL: Homepage, https://github.com/jiggy-ai/pydantic-chatcompletion
+Project-URL: Bug Tracker, https://github.com/jiggy-ai/pydantic-chatcompletion/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
