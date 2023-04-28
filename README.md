@@ -58,5 +58,4 @@ print(instance_of_my_data.some_data, instance_of_my_data.more_data)
 
 5. `example/nested.py`: Extracts a nested curriculum structure (curriculum title, description, courses, course titles, instructors, and course durations) from an unstructured text describing a data science bootcamp.
 
-6. `example/user_details.py`: Extracts user details (name, age, email, and country) from an unstructured text about a software engineer named John Doe..(3293 + 448 tokens = $0.1257)  
-~
+6. `example/user_details.py`: Extracts user details (name, age, email, and country) from an unstructured text about a software engineer named John Doe.
