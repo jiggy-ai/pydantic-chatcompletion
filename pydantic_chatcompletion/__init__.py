@@ -1,7 +1,7 @@
 """
 Wrapper around OpenAI ChatCompletion that compels the language model to produce a valid Pydantic model as output via prompting and iterative error remediation.  The easiest way to go from unstructured text to structured Pydantic data.
 
-A wrapper around openai.ChatCompletion.Create that prompts the model to produce a completion data in the form of a supplied pydantic model.  It uses the pydantic json_schema to help guide the model to the required output format.
+It uses the pydantic json_schema to help guide the model to the required output format.
 
 It will retry the task with error messages if the model does not produce appropriate output data due to either a json load issue or a pydantic validation issue.
 
