@@ -19,13 +19,14 @@ def create(messages : List[dict], model_class: BaseModel, retry=2, temperature=0
     messages.append({"role"   : "system",
                      "content": f"Please respond ONLY with valid json that conforms to this pydantic json_schema: {model_class.schema_json()}. Do not include additional text other than the object json as we will load this object with json.loads() and pydantic."})
 
-
+    last_exception = None
     for i in range(retry+1):
         response = openai.ChatCompletion.create(messages=messages, temperature=temperature, **kwargs)
         content = response['choices'][0]['message']['content']
         try:
             json_content = json.loads(content)
         except Exception as e:
+            last_exception = e
             error_msg = f"json.loads exception: {e}"
             logging.error(error_msg)
             messages.append({"role"   : "system",
@@ -34,9 +35,10 @@ def create(messages : List[dict], model_class: BaseModel, retry=2, temperature=0
         try:
             return model_class(**json_content)
         except ValidationError as e:
+            last_exception = e
             error_msg = f"pydantic exception: {e}"
             logging.error(error_msg)
             messages.append({"role"   : "system",
                             "content": error_msg})    
-    raise e
+    raise last_exception
             
