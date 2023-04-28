@@ -1,7 +1,0 @@
-pyproject.toml
-pydantic_chatcompletion/__init__.py
-pydantic_chatcompletion.egg-info/PKG-INFO
-pydantic_chatcompletion.egg-info/SOURCES.txt
-pydantic_chatcompletion.egg-info/dependency_links.txt
-pydantic_chatcompletion.egg-info/requires.txt
-pydantic_chatcompletion.egg-info/top_level.txt
