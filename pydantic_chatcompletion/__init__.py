@@ -22,13 +22,15 @@ def create(messages : List[dict], model_class: BaseModel, retry=2, temperature=0
     last_exception = None
     for i in range(retry+1):
         response = openai.ChatCompletion.create(messages=messages, temperature=temperature, **kwargs)
-        content = response['choices'][0]['message']['content']
+        assistant_message= response['choices'][0]['message']
+        content = assistant_message['content']
         try:
             json_content = json.loads(content)
         except Exception as e:
             last_exception = e
             error_msg = f"json.loads exception: {e}"
             logging.error(error_msg)
+            messages.append(assistant_message)
             messages.append({"role"   : "system",
                             "content": error_msg})
             continue
@@ -38,6 +40,7 @@ def create(messages : List[dict], model_class: BaseModel, retry=2, temperature=0
             last_exception = e
             error_msg = f"pydantic exception: {e}"
             logging.error(error_msg)
+            messages.append(assistant_message)            
             messages.append({"role"   : "system",
                             "content": error_msg})    
     raise last_exception
